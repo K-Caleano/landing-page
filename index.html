@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruby Kiwi Landing Page</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #e63946;
+            --primary-dark: #9b2226;
+            --secondary: #fdf0d5;
+            --accent: #fb8500;
+            --text: #2b2d42;
+            --bg: #fff;
+            --glass: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            position: fixed;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            top: 0;
+            left: 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.3s, background 0.3s;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .cta-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 180px 8% 100px;
+            background: radial-gradient(circle at top right, #fff5f5, #ffffff);
+            min-height: 90vh;
+        }
+
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            color: #555;
+            font-weight: 300;
+        }
+
+        .hero-text .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-text .primary-btn {
+            background: var(--primary);
+            color: white;
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            box-shadow: 0 10px 20px rgba(230, 57, 70, 0.2);
+        }
+
+        .hero-text .secondary-btn {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 16px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .hero-img-container {
+            position: relative;
+            width: 500px;
+        }
+
+        .hero img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 120px 8%;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 42px;
+            margin-bottom: 60px;
+            font-weight: 800;
+        }
+
+        .features h2 span {
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-box {
+            padding: 40px 30px;
+            background: #fff;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            text-align: left;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .feature-box p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        /* IMAGE SECTION */
+        .image-section {
+            padding: 100px 8%;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            background: #fffafa;
+        }
+
+        .image-card {
+            width: 350px;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+
+        /* STORY */
+        .story {
+            padding: 120px 8%;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .story-content {
+            flex: 1;
+        }
+
+        .story-img {
+            flex: 1;
+            border-radius: 30px;
+            overflow: hidden;
+        }
+
+        .story h2 {
+            font-size: 42px;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .story p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* CTA */
+        .cta {
+            padding: 100px 8%;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+            margin: 80px 8%;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(230, 57, 70, 0.4);
+        }
+
+        .cta h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta a {
+            background: white;
+            color: var(--primary);
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 20px;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .cta a:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 60px 8% 30px;
+            background: #111;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .copyright {
+            font-size: 14px;
+            color: #555;
+            border-top: 1px solid #222;
+            padding-top: 30px;
+        }
+
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 140px;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+            }
+
+            .hero-img-container {
+                margin-top: 50px;
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .story {
+                flex-direction: column;
+            }
+
+            header {
+                padding: 15px 5%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <header>
+        <div class="logo">Ruby Kiwi</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#story">Story</a>
+            <a href="#cta">Order</a>
+        </nav>
+        <a class="cta-btn" href="#cta">Buy Now</a>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h1>Experience the <span>Sweet Power</span> of Ruby Kiwi</h1>
+            <p>천연 안토시아닌이 선사하는 붉은 빛의 유혹. 그린키위보다 달콤하고, 골드키위보다 풍부한 영양을 지금 바로 경험하세요.</p>
+            <div class="btn-group">
+                <a href="#cta" class="primary-btn">Start Healthy</a>
+                <a href="#features" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+
+        <div class="hero-img-container">
+            <img src="kiwi_hero.png" alt="Premium Ruby Kiwi Slices">
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <h2>Why <span>Ruby Kiwi</span>?</h2>
+
+        <div class="feature-grid">
+            <div class="feature-box">
+                <span class="feature-icon">✨</span>
+                <h3>강력한 항산화</h3>
+                <p>붉은 중심부의 '안토시아닌' 성분이 체내 활성산소를 제거하고 노화 방지를 돕습니다.</p>
+            </div>
+
+            <div class="feature-box">
+                <span class="feature-icon">🛡️</span>
+                <h3>면역력 강화</h3>
+                <p>오렌지보다 풍부한 비타민 C가 일상의 활력을 되찾아주고 면역 체계를 강화합니다.</p>
+            </div>
+
+            <div class="feature-box">
+                <span class="feature-icon">🍯</span>
+                <h3>프리미엄 당도</h3>
+                <p>베리류의 풍미가 느껴지는 독특하고 깊은 달콤함으로 아이들도 좋아하는 맛입니다.</p>
+            </div>
+
+            <div class="feature-box">
+                <span class="feature-icon">🧘</span>
+                <h3>소화 및 건강</h3>
+                <p>천연 소화 효소 '액티니딘'과 식이섬유가 풍부해 속을 편안하게 관리해줍니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGE SECTION -->
+    <section class="image-section">
+        <div class="image-card">
+            <img src="kiwi1.jpg" alt="Ruby Kiwi Close-up" />
+        </div>
+        <div class="image-card">
+            <img src="kiwi2.jpg" alt="Ruby Kiwi in Hands" />
+        </div>
+        <div class="image-card">
+            <img src="kiwi3.jpg" alt="Ruby Kiwi on Spoon" />
+        </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="story" id="story">
+        <div class="story-img">
+            <img src="https://images.unsplash.com/photo-1591735156652-3273e34a64ca?auto=format&fit=crop&q=80&w=1000"
+                alt="Nature Orchard" style="width:100%">
+        </div>
+        <div class="story-content">
+            <h2>From Nature to You</h2>
+            <p>
+                루비키위는 가장 깨끗한 자연 환경에서 정성스럽게 재배됩니다.
+                매년 봄, 짧은 기간 동안만 수확되는 한정된 프리미엄 과일로,
+                자연의 생명력을 그대로 담아 여러분의 식탁까지 전달합니다.
+            </p>
+            <p>
+                한 입 베어 무는 순간 느껴지는 과즙의 풍미는 일반적인 키위와는 차원이 다른 감동을 선사합니다.
+                건강과 맛, 어느 하나 놓치고 싶지 않은 당신을 위한 최고의 선택입니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta" id="cta">
+        <h2>Try Ruby Kiwi Today</h2>
+        <p>지금 바로 가장 신선한 루비키위를 만나보세요.</p>
+        <a href="#">Order Now</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Ruby Kiwi</div>
+        <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#story">Story</a>
+            <a href="#cta">Order</a>
+        </div>
+        <div class="copyright">
+            © 2026 Ruby Kiwi. Premium Selection. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+
+</html>
